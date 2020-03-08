@@ -6,7 +6,7 @@
 
 To start the server:
 
-* Run `Application.kt` directly from your IDE
+* Run `WhatsappApplication.kt` directly from your IDE
 * Alternatively you can also use the spring boot plugin from the command line in the root examples directory.
 From the root WhatsApp-Clone-Server directory you can run the following:
 ```shell script
@@ -30,7 +30,10 @@ docker-compose down
 
 Once the app has started you can explore the example schema by opening the GraphQL Playground endpoint at http://localhost:4000/playground.
 
-###Resources
-[graphql kotlin getting started]: https://expediagroup.github.io/graphql-kotlin/docs/getting-started.html
-[authentication and authorization using jwt on spring webflux]: https://medium.com/@ard333/authentication-and-authorization-using-jwt-on-spring-webflux-29b81f813e78
+If you want to use the ready React application with it, after finishing those steps, follow the instructions on the on the [React repo](https://github.com/iguissouma/WhatsApp-Clone-Client-React).
 
+
+###Resources
+* [graphql kotlin getting started](https://expediagroup.github.io/graphql-kotlin/docs/getting-started.html)
+* [WhatsApp Clone Tutorial](https://www.tortilla.academy/Urigo/WhatsApp-Clone-Tutorial/master)
+* [authentication and authorization using jwt on spring webflux](https://medium.com/@ard333/authentication-and-authorization-using-jwt-on-spring-webflux-29b81f813e78)
