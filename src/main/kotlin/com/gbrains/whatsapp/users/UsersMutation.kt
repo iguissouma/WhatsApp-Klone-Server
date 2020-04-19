@@ -1,6 +1,5 @@
 package com.gbrains.whatsapp.users
 
-import com.expediagroup.graphql.annotations.GraphQLContext
 import com.expediagroup.graphql.spring.operations.Mutation
 import com.gbrains.whatsapp.common.MyGraphQLContext
 import com.gbrains.whatsapp.config.JWTUtil
@@ -22,7 +21,7 @@ class UsersMutation(private val userRepository: UserRepository,
 
     private val passwordEncoder: BCryptPasswordEncoder = BCryptPasswordEncoder(8)
 
-    suspend fun signIn(username: String, password: String, @GraphQLContext context: MyGraphQLContext): User? {
+    suspend fun signIn(username: String, password: String, context: MyGraphQLContext): User? {
         val entity: UserEntity = db.select()
                 .from("users")
                 .matching(where("username").isEquals(username))

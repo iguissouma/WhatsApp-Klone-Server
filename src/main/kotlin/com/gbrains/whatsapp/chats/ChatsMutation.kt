@@ -1,6 +1,5 @@
 package com.gbrains.whatsapp.chats
 
-import com.expediagroup.graphql.annotations.GraphQLContext
 import com.expediagroup.graphql.annotations.GraphQLID
 import com.expediagroup.graphql.spring.operations.Mutation
 import com.gbrains.whatsapp.common.MyGraphQLContext
@@ -11,7 +10,7 @@ import org.springframework.stereotype.Component
 class ChatsMutation(private val chatsService: ChatsService,
                     private val pubSub: PubSub) : Mutation {
 
-    suspend fun addMessage(@GraphQLID chatId: String, content: String, @GraphQLContext context: MyGraphQLContext): Message? {
+    suspend fun addMessage(@GraphQLID chatId: String, content: String, context: MyGraphQLContext): Message? {
         val currentUserId = context.currentUser?.id ?: return null
         val messageAdded = chatsService.addMessage(chatId,
                 currentUserId,
@@ -20,14 +19,14 @@ class ChatsMutation(private val chatsService: ChatsService,
         return messageAdded
     }
 
-    suspend fun addChat(@GraphQLID recipientId: String, @GraphQLContext context: MyGraphQLContext): Chat? {
+    suspend fun addChat(@GraphQLID recipientId: String, context: MyGraphQLContext): Chat? {
         val currentUserId = context.currentUser?.id ?: return null
         val chatAdded = chatsService.addChat(currentUserId, recipientId)
         this.pubSub.chatAddedSink.next(chatAdded)
         return chatAdded
     }
 
-    suspend fun removeChat(@GraphQLID chatId: String, @GraphQLContext context: MyGraphQLContext): String? {
+    suspend fun removeChat(@GraphQLID chatId: String, context: MyGraphQLContext): String? {
         val currentUserId = context.currentUser?.id ?: return null
         chatsService.removeChat(chatId, currentUserId)
         this.pubSub.chatRemovedSink.next(chatId)
